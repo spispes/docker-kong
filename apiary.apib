@@ -1,0 +1,79 @@
+FORMAT: 1A
+HOST: http://api.telefonica.com/
+
+# Product Catalogue
+
+Product Catalogue is a simple API allowing consumers to view all products.
+
+## Product Catalogue [/products]
+
+### List All Products [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "published_at": "2019-10-24T13:40:51.620Z",
+                "products": [
+                    {
+                        "ID": 123,
+                        "model": "Nokia",
+                        "prize": 333.08
+                    }, {
+                        "ID": 124,
+                        "model": "Huawei",
+                        "prize": 444.09
+                    }, {
+                        "ID": 125,
+                        "model": "Samsung",
+                        "prize": 555.1
+                    }, {
+                        "ID": 126,
+                        "model": "IPhone",
+                        "prize": 666.11
+                    }
+                ]
+            }
+        ]
+
+## [/products?ID=123]        
+### Get Product by ID [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "published_at": "2019-10-24T13:40:51.620Z",
+                "product": {
+                    "ID": 123
+                    "model": "Nokia",
+                    "prize": 333.08
+                }
+            }
+        ]
+
+### Create a New Product [POST]
+
+You may create a new product using this action. It takes a JSON
+object containing a model name and a prize.
+
++ Request (application/json)
+
+        {
+            "model": "new model",
+            "prize": 0.0
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /products/new
+
+    + Body
+
+            {
+                "published_at": "2019-10-24T13:40:51.620Z",
+                "model": "new model",
+                "prize": 0.0
+            }
